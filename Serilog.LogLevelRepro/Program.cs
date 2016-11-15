@@ -19,9 +19,9 @@ namespace Serilog.LogLevelRepro
 
             // Serilog console
             var configuration = new LoggerConfiguration()
+                .MinimumLevel.Verbose() // Verbose=Most detailed on Serilog
                 .Enrich.WithProperty("servername", Environment.MachineName)
-                .WriteTo.ColoredConsole(restrictedToMinimumLevel: Events.LogEventLevel.Verbose, // Verbose=Most detailed on Serilog
-                    outputTemplate: "SERILOG: [{Level}]: {Message}{NewLine}");  // Specific template, to make it stand out on the console
+                .WriteTo.ColoredConsole(outputTemplate: "SERILOG: [{Level}]: {Message}{NewLine}");  // Specific template, to make it stand out on the console
             loggerFactory.AddSerilog(configuration.CreateLogger());
 
             // Log on all levels
